@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import com.solvd.UniversityMvn.buildings.Building;
 import com.solvd.UniversityMvn.buildings.ExclusiveRoom;
 import com.solvd.UniversityMvn.buildings.Room;
+import com.solvd.UniversityMvn.connections.DataBase;
 import com.solvd.UniversityMvn.courses.Book;
 import com.solvd.UniversityMvn.courses.Course;
 import com.solvd.UniversityMvn.courses.GPA;
@@ -132,6 +133,16 @@ public class Main {
 			LOGGER.error(e1.getMessage());
 		}
 		
+		
+		DataBase db = new DataBase();
+		db.insert("a", "hey there");
+		db.insert("b", "hey there");
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e2) {
+			// TODO: handle exception
+		}
+		db.select("b");
 	}
 
 }
