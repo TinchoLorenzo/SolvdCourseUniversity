@@ -4,7 +4,6 @@ public class Connection {
 	
 	private int number;
 	private DataBase dataBase;
-	private ConnectionPool master;
 	
 	public Connection() {
 		// TODO Auto-generated constructor stub
@@ -12,11 +11,10 @@ public class Connection {
 		this.number=(int) Math.floor(Math.random()*1000+1);
 	}
 	
-	public Connection(int number, ConnectionPool master) {
+	public Connection(int number) {
 		//emulates connection to database
 		this.dataBase = new DataBase();
 		this.number=number;
-		this.master=master;
 	}
 	
 	
@@ -56,8 +54,5 @@ public class Connection {
 	
 	public int getNumber() {
 		return number;
-	}
-	public void close() {
-		master.closeConnection(this);
 	}
 }

@@ -133,16 +133,6 @@ public class Main {
 			LOGGER.error(e1.getMessage());
 		}
 		
-		
-		DataBase db = new DataBase();
-		db.insert("a", "hey there");
-		db.insert("b", "hey there");
-		try {
-			Thread.sleep(1000);
-		} catch (Exception e2) {
-			// TODO: handle exception
-		}
-		db.select("b");
 	}
 
 }
