@@ -25,8 +25,8 @@ public class EmployeeDAO extends AbstractDAO implements IEmployeeDAO{
 
 	private static final String SAVE_EMPLOYEE = "INSERT INTO EMPLOYEES (name, email, salary, asset_id, license_id) values (?,?,?,?,?);";
 	private static final String DELETE_EMPLOYEE= "DELETE FROM EMPLOYEES WHERE id=?;";
-	private static final String GET_EMPLOYEE = "SELECT * FROM EMPLOYEES WHERE id=?;";
-	private static final String GET_EMPLOYEE_BY_LICENSE = "SELECT * FROM EMPLOYEES WHERE licence_id=?;";
+	private static final String GET_EMPLOYEE = "SELECT * FROM EMPLOYEES E INNER JOIN ASSETS A ON (A.id=E.id) WHERE E.id=?;";
+	private static final String GET_EMPLOYEE_BY_LICENSE = "SELECT * FROM EMPLOYEES E INNER JOIN ASSETS A ON (A.id=E.id) WHERE E.licence_id=?;";
 	
 	private final static Logger LOGGER = LogManager.getLogger(MethodHandles.lookup().lookupClass());
 	
@@ -94,6 +94,7 @@ public class EmployeeDAO extends AbstractDAO implements IEmployeeDAO{
             if(rs.next())
             {
                 employee = new Employee(rs.getString("name"), rs.getString("email"), rs.getLong("id"), rs.getDouble("salary"), null);
+                employee.setWeeklyHours(rs.getInt("weekly_hours"));
                 License l = new License();
                 l.setId(rs.getLong("licence_id"));
                 employee.setLicense(l);
@@ -167,7 +168,8 @@ public class EmployeeDAO extends AbstractDAO implements IEmployeeDAO{
             if(rs.next())
             {
             	employee = new Employee(rs.getString("name"), rs.getString("email"), rs.getLong("id"), rs.getDouble("salary"), null);
-	        	License l = new License();	
+                employee.setWeeklyHours(rs.getInt("weekly_hours"));
+            	License l = new License();	
 	            l.setId(rs.getLong("licence_id"));
 	            employee.setLicense(l);
             }

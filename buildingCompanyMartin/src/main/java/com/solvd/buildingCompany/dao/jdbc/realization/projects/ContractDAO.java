@@ -109,8 +109,6 @@ public class ContractDAO extends AbstractDAO implements IContractDAO {
                 Project p = new Project();
                 p.setId(rs.getLong("project_id"));
                 contract.setProject(p);
-                PaymentDAO payd = new PaymentDAO();
-                contract.setPayments(payd.getPaymentsByContractId(contract.getId()));
             }
 
 		} catch (SQLException e) {
@@ -187,10 +185,9 @@ public class ContractDAO extends AbstractDAO implements IContractDAO {
             	Contract contract = new Contract(rs.getLong("id"), new java.util.Date(rs.getDate("begin_date").getTime()), new java.util.Date(rs.getDate("end_date").getTime()),
                 		rs.getDouble("prize"),null, null, null);               
             	contract.setClient(client);
-            	ProjectDAO pd = new ProjectDAO();
-                contract.setProject(pd.getById(rs.getLong("project_id")));
-                PaymentDAO payd = new PaymentDAO();
-                contract.setPayments(payd.getPaymentsByContractId(contract.getId()));
+            	Project p = new Project();
+                p.setId(rs.getLong("project_id"));
+                contract.setProject(p);
                 contracts.add(contract);
             }
 		} catch (SQLException e) {
@@ -232,12 +229,10 @@ public class ContractDAO extends AbstractDAO implements IContractDAO {
             {
             	Contract contract = new Contract(rs.getLong("id"), new java.util.Date(rs.getDate("begin_date").getTime()), new java.util.Date(rs.getDate("end_date").getTime()),
                 		rs.getDouble("prize"),null, null, null);               
-
-            	ClientDAO cd = new ClientDAO();
-                contract.setClient(cd.getById(rs.getLong("client_id")));
+            	Client cd = new Client();
+                cd.setId(rs.getLong("client_id"));
+                contract.setClient(cd);
                 contract.setProject(project);
-                PaymentDAO payd = new PaymentDAO();
-                contract.setPayments(payd.getPaymentsByContractId(contract.getId()));
                 contracts.add(contract);
             }
 		} catch (SQLException e) {

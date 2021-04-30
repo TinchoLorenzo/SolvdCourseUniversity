@@ -6,6 +6,4 @@ import com.solvd.buildingCompany.model.projects.Asset;
 
 public interface IAssetDAO {
 
-	public List<Asset> getAssetsByProjectId(long id);
-	public List<Asset> getHistoricAssetsByProjectId(long id);
 }

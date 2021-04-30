@@ -2,7 +2,9 @@ package com.solvd.buildingCompany.model.machines;
 
 import java.util.Date;
 
-public class Machine {
+import com.solvd.buildingCompany.model.projects.Asset;
+
+public class Machine extends Asset{
 	private long id;
 	private Date buyingDate;
 	private double number;

@@ -23,7 +23,7 @@ public class MachineDAO extends AbstractDAO implements IMachineDAO{
 
 	private static final String SAVE_MACHINE = "INSERT INTO MACHINES (buying_date, number, asset_id, type_id, company_id) values (?,?,?,?,?);";
 	private static final String DELETE_MACHINE= "DELETE FROM MACHINES WHERE id=?;";
-	private static final String GET_MACHINE = "SELECT * FROM MACHINES WHERE id=?;";
+	private static final String GET_MACHINE = "SELECT * FROM MACHINES M INNER JOIN ASSETS A ON (A.id=M.id) WHERE id=?;";
 	
 	private final static Logger LOGGER = LogManager.getLogger(MethodHandles.lookup().lookupClass());
 	
@@ -94,6 +94,7 @@ public class MachineDAO extends AbstractDAO implements IMachineDAO{
             if(rs.next())
             {
                 machine = new Machine(rs.getLong("id"), new Date(rs.getDate("buying_date").getTime()), rs.getDouble("number"), MachineType.getById(rs.getLong("type_id")), null);
+                machine.setWeeklyHours(rs.getInt("weekly_hours"));
                 Company company= new Company();
                 company.setId(rs.getLong("company_id"));
                 machine.setCompany(company);

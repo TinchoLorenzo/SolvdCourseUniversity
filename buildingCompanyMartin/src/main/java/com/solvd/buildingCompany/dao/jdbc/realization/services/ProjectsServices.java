@@ -2,6 +2,7 @@ package com.solvd.buildingCompany.dao.jdbc.realization.services;
 
 import com.solvd.buildingCompany.dao.jdbc.realization.persons.ClientDAO;
 import com.solvd.buildingCompany.dao.jdbc.realization.projects.ContractDAO;
+import com.solvd.buildingCompany.dao.jdbc.realization.projects.PaymentDAO;
 import com.solvd.buildingCompany.dao.jdbc.realization.projects.ProjectDAO;
 import com.solvd.buildingCompany.model.projects.Contract;
 import com.solvd.buildingCompany.model.projects.Project;
@@ -16,8 +17,12 @@ public class ProjectsServices {
 		ContractDAO cd = new ContractDAO();
 		Contract c = cd.getById(id);
 		ClientDAO clientdao = new ClientDAO();
+		PaymentDAO paydao = new PaymentDAO();
+		c.setPayments(paydao.getPaymentsByContractId(c.getId()));
 		c.setClient(clientdao.getById(c.getClient().getId()));
 		c.setProject(this.getProjectById(c.getProject().getId()));
+		
+		return c;
 	}
 	
 	public Project getProjectById(long id) {
