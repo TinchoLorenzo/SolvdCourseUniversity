@@ -1,0 +1,34 @@
+[
+    {
+        "id":1,
+        "name": "Roca 500",
+        "city": {
+            "id":1,
+            "name": "Tandil",
+            "abbreviation": "TAN",
+            "zip_code": 7000,
+            "foundation_date": "1823-04-04",
+            "country": {
+                "id": 1,
+                "name": "Argentina",
+                "abbreviation": "ARG"
+            }
+        }
+    },
+    {
+        "id":2,
+        "name": "10 532",
+        "city": {
+            "id":2,
+            "name": "Balcarce",
+            "abbreviation": "BAL",
+            "zip_code": 7620,
+            "foundation_date": "1976-22-06",
+            "country": {
+                "id": 1,
+                "name": "Argentina",
+                "abbreviation": "ARG"
+            }
+        }
+    }
+]

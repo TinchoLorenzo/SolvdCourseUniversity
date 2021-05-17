@@ -2,6 +2,7 @@ package com.solvd.buildingCompany.dao.jdbc.realization.location;
 
 import java.lang.invoke.MethodHandles;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +20,7 @@ import com.solvd.buildingCompany.model.location.Country;
 
 public class CityDAO extends AbstractDAO implements ICityDAO{
 
-	private static final String SAVE_CITY = "INSERT INTO CITIES (name, abbreviation, country_id, zip_code) VALUES (?,?,?,?);";
+	private static final String SAVE_CITY = "INSERT INTO CITIES (name, abbreviation, country_id, zip_code, foundation_date) VALUES (?,?,?,?,?);";
 	private static final String DELETE_CITY= "DELETE FROM CITIES WHERE id=?;";
 	private static final String GET_CITY = "SELECT * FROM CITIES WHERE id=?;";
 	private static final String GET_CITIES_BY_COUNTRY = "SELECT * FROM CITIES WHERE country_id=?;";
@@ -42,6 +43,8 @@ public class CityDAO extends AbstractDAO implements ICityDAO{
 			ps.setString(2,data.getAbbreviation());
 			ps.setLong(3,data.getCountry().getId());
 			ps.setInt(4,data.getZipCode());
+        	ps.setDate(5,new Date(data.getFoundationDate().getTime()));
+
 
 			int rset = ps.executeUpdate();
 			if(rset==1)
@@ -91,7 +94,7 @@ public class CityDAO extends AbstractDAO implements ICityDAO{
 			rs = ps.executeQuery();
             if(rs.next())
             {
-                city = new City( rs.getLong("id"), rs.getString("name"), rs.getString("abbreviation"), rs.getInt("zip_code"),null);
+                city = new City( rs.getLong("id"), rs.getString("name"), rs.getString("abbreviation"), rs.getInt("zip_code"),new java.util.Date(rs.getDate("foundation_date").getTime()),null);
                 Country country = new Country();
                 country.setId(rs.getLong("country_id"));
                 city.setCountry(country);
@@ -167,7 +170,7 @@ public class CityDAO extends AbstractDAO implements ICityDAO{
 			rs = ps.executeQuery();
             while(rs.next())
             {
-                City city = new City( rs.getLong("id"), rs.getString("name"), rs.getString("abbreviation"), rs.getInt("zip_code"),null);
+                City city = new City( rs.getLong("id"), rs.getString("name"), rs.getString("abbreviation"), rs.getInt("zip_code"),new java.util.Date(rs.getDate("foundation_date").getTime()),null);
                 city.setCountry(country);
                 cities.add(city);
             }

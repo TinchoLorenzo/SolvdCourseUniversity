@@ -1,9 +1,26 @@
 package com.solvd.buildingCompany.model.location;
 
+import java.util.Date;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@XmlRootElement(name = "location")
+@XmlAccessorType (XmlAccessType.FIELD)
 public class Location {
 
+	@XmlElement(name = "id")
+	@JsonProperty("id")
 	private long id;
+	@XmlElement(name = "name")
+	@JsonProperty("name")
 	private String name;
+	@XmlElement(name = "city")
+	@JsonProperty("city")
 	private City city;
 	
 	public Location() {
@@ -40,6 +57,12 @@ public class Location {
 	public void setCity(City city) {
 		this.city = city;
 	}
+
+	@Override
+	public String toString() {
+		return "Location [id=" + id + ", name=" + name + ", city=" + city + "]";
+	}
+	
 	
 	
 }

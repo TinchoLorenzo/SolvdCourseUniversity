@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<locations>
+    <location>
+        <id>1</id>
+        <name>"Roca 500"</name>
+        <city>
+            <id>1</id>
+            <name>"Tandil"</name>
+            <abbreviation>"TAN"</abbreviation>
+            <zip_code>7000</zip_code>
+            <foundation_date>"04/04/1823"</foundation_date>
+            <country>
+                <id>1</id>
+                <name>"Argentina"</name>
+                <abbreviation>"ARG"</abbreviation>
+            </country>
+        </city>
+    </location>
+
+    <location>
+        <id>2</id>
+        <name>"10 532"</name>
+        <city>
+            <id>2</id>
+            <name>"Balcarce"</name>
+            <abbreviation>"BAL"</abbreviation>
+            <zip_code>7620</zip_code>
+            <foundation_date>"06/22/1876"</foundation_date>
+            <country>
+                <id>1</id>
+                <name>"Argentina"</name>
+                <abbreviation>"ARG"</abbreviation>
+            </country>
+        </city>
+    </location>
+</locations>

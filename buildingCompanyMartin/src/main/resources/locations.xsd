@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!-- definition of simple elements -->
+<xs:element name="id" type="xs:long"/>
+<xs:element name="name" type="xs:string"/>
+<xs:element name="abbreviation" type="xs:string"/>
+<xs:element name="zip_code" type="xs:positiveInteger"/>
+<xs:element name="foundation_date" type="xs:date"/>
+
+<xs:element name="country">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="id"/>
+      <xs:element ref="name"/>
+      <xs:element ref="abbreviation"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="city">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="id"/>
+      <xs:element ref="name"/>
+      <xs:element ref="abbreviation"/>
+      <xs:element ref="zip_code"/>
+      <xs:element ref="foundation_date"/>
+      <xs:element ref="country" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="location">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="id"/>
+      <xs:element ref="name"/>
+      <xs:element ref="city" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="locations">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="location" minOccurs="1" maxOccurs"unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+</xs:schema>

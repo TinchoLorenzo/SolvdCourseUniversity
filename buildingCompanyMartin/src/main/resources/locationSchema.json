@@ -1,0 +1,52 @@
+{
+    "$id": "https://example.com/person.schema.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Location",
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+          "id": {
+              "type": "long"
+          },
+          "name": {
+              "type": "string"
+          },
+          "city": {
+              "type": "object",
+              "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "abbreviation": {
+                    "type": "string"
+                },
+                "zip_code": {
+                    "type": "int"
+                },
+                "foundation_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "country": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "long"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "abbreviation": {
+                            "type": "string"
+                        }
+                    }
+                }
+              }
+          }
+      }
+    }
+  }
